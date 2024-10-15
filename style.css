@@ -2,6 +2,9 @@
     padding:0;
     margin:0;
 }
+*:not(.shelf *, .dialogBox *){
+    color:white;
+}
 .header{
     padding:20px;
     background-color: #030712;
@@ -16,9 +19,27 @@
 }
 
 .dialogBox{
-    
+    background-color: #3730a3;
 }
-
+.flexContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+.control{
+    padding:30px;
+    background-color: #171717;
+    height: 10px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.control > button{
+    background-color: #3b0764;
+    color:white;
+    padding:10px;
+    border:none;
+}
 
 
 

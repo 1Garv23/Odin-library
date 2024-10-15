@@ -13,8 +13,13 @@
         <button class="openDialog">Add Book</button>
     </div>
     <!-- dialog box associated with input -->
+     <div class="control">
+        <p class="count">Number of Books: 0</p>
+        <button class="nuke">Delete All</button>
+     </div>
     <dialog class="dialogBox">
     <form action="" method="dialog">
+        <div class="flexContainer">
         <div class="name">
             <label for="name">Name</label>
             <input type="text" name="name" id="name">
@@ -37,9 +42,10 @@
             <button class="closeDialog" value="submit">Add</button>
              <button value="cancel">Cancel</button>
         </div>
+    </div>
     </form>
     </dialog>
-
+ 
     <div class="shelf">
 
     </div>

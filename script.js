@@ -4,16 +4,14 @@ function Book(bookName, author, pages, read){
     this.pages=pages;
     this.read=read;
 }
-let i=0;
-let library=[];
-function addStyling(container, bName, aName, pName, rName, readToggle, del){
 
-}
+let library=[];
+
 function addBookToLibrary(bookName, author, pages, read){
     let newBook=new Book(bookName, author, pages, read);
-    library[i]=newBook;
+    library.push(newBook);
     let container=document.createElement("div");
-    container.dataset.index=i;
+    container.dataset.index=library.length-1;
     newBook.container=container;  //for delete function, maps library[] to their dom element
 
     let bName=document.createElement("p");
@@ -35,10 +33,14 @@ function addBookToLibrary(bookName, author, pages, read){
     let del=document.createElement("button");
     del.textContent="Delete";
     container.appendChild(del);
-    container.addEventListener("click", (event)=>{handleClick(event)});
+    container.addEventListener("click", (event)=>{handleClick(event)});  //this is eventListener for toggling and deleting
     newBook.container=container;
     shelf.appendChild(container);
-    i++;
+    updateCount();
+}
+function updateCount(){
+    let countPara=document.querySelector(".count");
+    countPara.textContent="Number of Books: "+library.length;
 }
 function handleClick(event){  
     let origTarget=event.target;
@@ -59,11 +61,11 @@ function handleClick(event){
     }
     //delete
     else if(origTarget.textContent==="Delete"){
-        let index=currentDiv.dataset.index;
+        let index=parseInt(currentDiv.dataset.index);
         for(let i=index+1; i<library.length; i++){
             //for each library book, make their index correct again
             let container=library[i].container;
-            container.dataset.index=i; 
+            container.dataset.index=i-1; 
         }
         let elementToBeDeleted=currentDiv;
         library.splice(index, 1); //remove this from library
@@ -73,6 +75,18 @@ function handleClick(event){
         }
         elementToBeDeleted.parentNode.removeChild(elementToBeDeleted);  //finallt remove the container itlsef
     }
+    else if(origTarget.textContent==="Delete All"){
+        for(let i=library.length-1; i>=0; i--){
+            //delete all elements
+            let elementToBeDeleted=library[i].container;
+            while(elementToBeDeleted.firstChild){  //remove all children
+                elementToBeDeleted.removeChild(elementToBeDeleted.firstChild);
+            }
+            elementToBeDeleted.parentNode.removeChild(elementToBeDeleted); 
+            library.pop();
+        }
+    }
+    updateCount();
 }
 
 
@@ -91,6 +105,9 @@ let closeDialog=document.querySelector(".closeDialog");
 openButton.addEventListener("click",()=>{dialogBox.showModal();});
 closeDialog.addEventListener("click", ()=>{dialogBox.close()});
 
+let nuke=document.querySelector(".nuke");
+nuke.addEventListener("click",(event)=>handleClick(event));
+
 //take input when dialogBox closes
 dialogBox.addEventListener("close", (e)=>{
     if(dialogBox.returnValue==="cancel"){
@@ -103,8 +120,8 @@ dialogBox.addEventListener("close", (e)=>{
     else{
         addBookToLibrary(nameInput.value , nameAuthor.value, pages.value, read.value);
     }
-    nameInput.value="";
-    nameAuthor.value="";
-    pages.value="";
-    read.value="";
+    nameInput.value="1";
+    nameAuthor.value="1";
+    pages.value="1";
+    read.value="no";
 });
