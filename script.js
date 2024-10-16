@@ -103,7 +103,7 @@ let openButton=document.querySelector(".openDialog");
 let dialogBox=document.querySelector(".dialogBox");
 let closeDialog=document.querySelector(".closeDialog");
 openButton.addEventListener("click",()=>{dialogBox.showModal();});
-closeDialog.addEventListener("click", ()=>{dialogBox.close()});
+// closeDialog.addEventListener("click", ()=>{dialogBox.close()}); //this causes dialogBox.returnValue to not work because we are closing it explicity using this button(letting form close it does the job)
 
 let nuke=document.querySelector(".nuke");
 nuke.addEventListener("click",(event)=>handleClick(event));
