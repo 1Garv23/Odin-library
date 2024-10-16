@@ -8,6 +8,13 @@ function Book(bookName, author, pages, read){
 let library=[];
 
 function addBookToLibrary(bookName, author, pages, read){
+    console.log(read);
+    if(read===true){
+        read="yes";
+    }
+    else{
+        read="no";
+    }
     let newBook=new Book(bookName, author, pages, read);
     library.push(newBook);
     let container=document.createElement("div");
@@ -118,8 +125,7 @@ dialogBox.addEventListener("close", (e)=>{
     }
     
     else{
-        console.log(read.value);
-        addBookToLibrary(nameInput.value , nameAuthor.value, pages.value, read.value);
+        addBookToLibrary(nameInput.value , nameAuthor.value, pages.value, read.checked);
     }
     nameInput.value="1";
     nameAuthor.value="1";
