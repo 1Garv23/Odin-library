@@ -113,11 +113,12 @@ dialogBox.addEventListener("close", (e)=>{
     if(dialogBox.returnValue==="cancel"){
         return; //dialog was closed using cancel button
     }
-    if(((nameInput.value==="") || (nameAuthor.value==="") || (pages.value==="")) ||(read.value.toLowerCase()!="yes" && read.value.toLowerCase()!="no")){
+    if(((nameInput.value==="") || (nameAuthor.value==="") || (pages.value===""))){
         alert("Please enter proper values");
     }
     
     else{
+        console.log(read.value);
         addBookToLibrary(nameInput.value , nameAuthor.value, pages.value, read.value);
     }
     nameInput.value="1";
