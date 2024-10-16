@@ -8,6 +8,9 @@ body{
 *:not(.shelf *, .dialogBox *){
     color:white;
 }
+button{
+    border-radius:5px;
+}
 .header{
     padding:20px;
     background-color: #030712;
@@ -51,12 +54,17 @@ body{
     display:grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-auto-rows: min-content;
+    row-gap: 10px;
+    column-gap: 10px;
+    padding:10px;
 }
 .shelf > div{
     padding:10px;
     margin:0;
     background-color: #1f2937;
     box-sizing: border-box;
+    border-left:3px solid #8b5cf6;
+    border-radius: 10px;
 }
 .shelf > div > *:not(button){
     padding:0;
